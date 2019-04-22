@@ -1,53 +1,7 @@
 package tree
 
-import (
-	"fmt"
-)
-
 //https://en.wikipedia.org/wiki/Tree_traversal
-
-type tree struct {
-	id    int
-	left  *tree
-	right *tree
-}
-
-// simplistic stack implementation / not thread safe
-type stack []*tree
-
-func (r *stack) push(v *tree) {
-	*r = append(*r, v)
-	// fmt.Printf("push: %v\n", v.id)
-}
-
-func (r *stack) pop() *tree {
-	size := len(*r)
-	if size == 0 {
-		return nil
-	}
-	v := (*r)[size-1]
-	*r = (*r)[:size-1]
-	// fmt.Printf("pop: %v\n", v.id)
-	return v
-}
-
-func (r stack) peek() *tree {
-	size := len(r)
-	if size == 0 {
-		return nil
-	}
-	return r[size-1]
-}
-
-func (r stack) empty() bool {
-	// fmt.Printf("empty: %v\n", len(r) == 0)
-	return len(r) == 0
-}
-
 //iterative
-func visit(n *tree) {
-	fmt.Printf(" %v ", n.id)
-}
 
 func preorder(root *tree) {
 	if root == nil {
