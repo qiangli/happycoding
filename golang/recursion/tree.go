@@ -12,7 +12,7 @@ type tree struct {
 	right *tree
 }
 
-func process(n *tree) {
+func visit(n *tree) {
 	fmt.Printf("%v ", n.id)
 }
 
@@ -24,7 +24,7 @@ func inorder(n *tree) {
 		inorder(n.left)
 	}
 
-	process(n)
+	visit(n)
 
 	if n.right != nil {
 		inorder(n.right)
@@ -36,7 +36,7 @@ func preorder(n *tree) {
 		return
 	}
 
-	process(n)
+	visit(n)
 
 	if n.left != nil {
 		preorder(n.left)
@@ -58,7 +58,7 @@ func postorder(n *tree) {
 		postorder(n.right)
 	}
 
-	process(n)
+	visit(n)
 
 }
 
@@ -71,7 +71,7 @@ func outorder(n *tree) {
 		outorder(n.right)
 	}
 
-	process(n)
+	visit(n)
 
 	if n.left != nil {
 		outorder(n.left)
