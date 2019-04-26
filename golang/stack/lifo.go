@@ -1,7 +1,7 @@
 package stack
 
 import (
-//"fmt"
+	"strconv"
 )
 
 type node struct {
@@ -39,4 +39,21 @@ func (r Stack) Peek() int {
 
 func (r Stack) IsEmpty() bool {
 	return r.top == nil
+}
+
+func (r Stack) String() string {
+	if r.top == nil {
+		return "[]"
+	}
+	s := "["
+	c := r.top
+	for {
+		if c == nil {
+			break
+		}
+		s += strconv.Itoa(c.data)
+		s += ","
+		c = c.next
+	}
+	return s + "]"
 }
