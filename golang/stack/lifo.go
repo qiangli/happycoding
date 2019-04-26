@@ -17,9 +17,9 @@ func NewStack() *Stack {
 	return &Stack{}
 }
 
-func (r *Stack) Push(v int) {
+func (r *Stack) Push(item int) {
 	n := &node{
-		data: v,
+		data: item,
 	}
 	n.next = r.top
 	r.top = n
