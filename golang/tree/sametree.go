@@ -1,16 +1,53 @@
-//https://tour.golang.org/concurrency/8
-
 package tree
 
 import (
 	"fmt"
-	"sync"
+	"math/rand"
 )
 
+// https://tour.golang.org/concurrency/8
+// https://github.com/golang/tour/blob/master/tree/tree.go
+// A Tree is a binary tree with integer values.
 type Tree struct {
 	Left  *Tree
 	Value int
 	Right *Tree
+}
+
+// New returns a new, random binary tree holding the values k, 2k, ..., 10k.
+func New(size, k int) *Tree {
+	var t *Tree
+	for _, v := range rand.Perm(size) {
+		t = insert(t, (1+v)*k)
+	}
+	return t
+}
+
+func insert(t *Tree, v int) *Tree {
+	if t == nil {
+		return &Tree{nil, v, nil}
+	}
+	if v < t.Value {
+		t.Left = insert(t.Left, v)
+	} else {
+		t.Right = insert(t.Right, v)
+	}
+	return t
+}
+
+func (t *Tree) String() string {
+	if t == nil {
+		return "()"
+	}
+	s := ""
+	if t.Left != nil {
+		s += t.Left.String() + " "
+	}
+	s += fmt.Sprint(t.Value)
+	if t.Right != nil {
+		s += " " + t.Right.String()
+	}
+	return "(" + s + ")"
 }
 
 // Walk walks the tree t sending all values
@@ -21,7 +58,6 @@ func Walk(t *Tree, ch chan int) {
 	}
 
 	visit := func(v *Tree) {
-		//fmt.Printf(" -> %v", v.Value)
 		ch <- v.Value
 	}
 
@@ -40,14 +76,6 @@ func Walk(t *Tree, ch chan int) {
 // t1 and t2 contain the same values.
 func Same(t1, t2 *Tree) bool {
 
-	collect := func(ch chan int) []int {
-		var a []int
-		for v := range ch {
-			a = append(a, v)
-		}
-		return a
-	}
-
 	ch1 := make(chan int)
 	ch2 := make(chan int)
 
@@ -62,32 +90,18 @@ func Same(t1, t2 *Tree) bool {
 	}()
 
 	//
-	var a1, a2 []int
-	var wg sync.WaitGroup
-
-	wg.Add(2)
+	same := make(chan bool)
 
 	go func() {
-		a1 = collect(ch1)
-		wg.Done()
-	}()
-
-	go func() {
-		a2 = collect(ch2)
-		wg.Done()
-	}()
-
-	wg.Wait()
-
-	fmt.Printf("%v\n%v\n", a1, a2)
-
-	if len(a1) != len(a2) {
-		return false
-	}
-	for i, v := range a1 {
-		if a2[i] != v {
-			return false
+		for v := range ch1 {
+			c := <-ch2
+			if v != c {
+				same <- false
+			}
 		}
-	}
-	return true
+		_, ok := <-ch2
+		same <- !ok
+	}()
+
+	return <-same
 }
