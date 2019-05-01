@@ -17,5 +17,4 @@ func merge(a, b []int, la, lb int) {
 			j--
 		}
 	}
-
 }
