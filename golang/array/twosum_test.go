@@ -11,4 +11,8 @@ func TestTwoSum(t *testing.T) {
 
 	s := twoSum(a, target)
 	fmt.Println(s)
+
+	a = []int{3, 2, 4}
+	target = 6
+	fmt.Println(twoSum(a, target))
 }
