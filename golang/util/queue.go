@@ -1,8 +1,6 @@
 package util
 
-import (
-//"sync"
-)
+import ()
 
 type Queue struct {
 	elements []int
