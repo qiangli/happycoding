@@ -3,32 +3,67 @@ package util
 import ()
 
 type Queue struct {
-	elements []int
+	head *Node
+	tail *Node
+	size int
 }
 
+// returns false to stop
+type Visitor func(int) bool
+
 func NewQueue() *Queue {
-	q := &Queue{}
+	q := &Queue{
+		head: &Node{},
+		tail: &Node{},
+	}
 	return q
 }
 
+// enqueue
 func (r *Queue) Add(v int) {
-	r.elements = append(r.elements, v)
+	n := &Node{
+		V: v,
+	}
+	r.size++
+
+	if r.tail.Next == nil {
+		r.head.Next = n
+		r.tail.Next = n
+		return
+	}
+	//
+	c := r.tail.Next
+	r.tail.Next = n
+	c.Next = n
+
 }
 
+// dequeue
 func (r *Queue) Remove() int {
-	el := r.elements[0]
-	r.elements = r.elements[1:len(r.elements)]
-	return el
+	r.size--
+	c := r.head.Next
+	r.head.Next = c.Next
+	if r.head.Next == nil {
+		r.tail.Next = nil
+	}
+
+	return c.V
 }
 
-func (r *Queue) Element() int {
-	return r.elements[0]
+func (r *Queue) Peek() int {
+	return r.head.Next.V
 }
 
 func (r *Queue) IsEmpty() bool {
-	return len(r.elements) == 0
+	return r.head.Next == nil
 }
 
 func (r *Queue) Size() int {
-	return len(r.elements)
+	return r.size
+}
+
+func (r *Queue) Visit(f func(int) bool) {
+	for c := r.head.Next; c != nil; c = c.Next {
+		f(c.V)
+	}
 }
