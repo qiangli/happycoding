@@ -5,60 +5,60 @@ import (
 	"testing"
 )
 
-func TestQueue(t *testing.T) {
-	q := NewQueue()
+func TestStack(t *testing.T) {
+	s := NewStack()
 
-	if !q.IsEmpty() {
+	if !s.IsEmpty() {
 		t.FailNow()
 	}
 
 	val := 98
 
-	q.Add(val)
+	s.Push(val)
 
-	if q.Size() != 1 {
+	if s.Size() != 1 {
 		t.FailNow()
 	}
 
-	q.Visit(func(v int) bool {
+	s.Visit(func(v int) bool {
 		fmt.Println(v)
 		return true
 	})
 
-	el := q.Peek()
-	if el != val || q.Size() != 1 {
+	el := s.Peek()
+	if el != val || s.Size() != 1 {
 		t.FailNow()
 	}
 
-	el = q.Remove()
+	el = s.Pop()
 
-	if el != val || !q.IsEmpty() {
+	if el != val || !s.IsEmpty() {
 		t.FailNow()
 	}
 
 	size := 100
 	for i := 0; i < size; i++ {
-		q.Add(i)
+		s.Push(i)
 	}
 
-	q.Visit(func(v int) bool {
+	s.Visit(func(v int) bool {
 		fmt.Print("->", v)
 		return true
 	})
 	fmt.Println()
 
-	if q.Size() != size {
+	if s.Size() != size {
 		t.FailNow()
 	}
-	for i := 0; i < size; i++ {
-		j := q.Remove()
+	for i := size - 1; i >= 0; i-- {
+		j := s.Pop()
 		//fmt.Println(i, j)
 		if i != j {
 			t.FailNow()
 		}
 	}
 
-	if q.Size() != 0 {
+	if s.Size() != 0 {
 		t.FailNow()
 	}
 }

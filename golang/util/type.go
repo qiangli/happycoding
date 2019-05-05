@@ -5,3 +5,6 @@ type Node struct {
 	Prev *Node
 	Next *Node
 }
+
+// returns false to stop
+type Visitor func(int) bool

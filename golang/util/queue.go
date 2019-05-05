@@ -8,9 +8,6 @@ type Queue struct {
 	size int
 }
 
-// returns false to stop
-type Visitor func(int) bool
-
 func NewQueue() *Queue {
 	q := &Queue{
 		head: &Node{},
@@ -62,8 +59,10 @@ func (r *Queue) Size() int {
 	return r.size
 }
 
-func (r *Queue) Visit(f func(int) bool) {
+func (r *Queue) Visit(f Visitor) {
 	for c := r.head.Next; c != nil; c = c.Next {
-		f(c.V)
+		if !f(c.V) {
+			break
+		}
 	}
 }
