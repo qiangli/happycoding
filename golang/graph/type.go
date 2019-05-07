@@ -175,18 +175,18 @@ func (r AdjacencyMatrix) Neighbors(x int) []int {
 	return []int(*s)
 }
 
-func (r *AdjacencyMatrix) AddEdge(x, y int) {
-	(*r)[x][y] = 1
-	(*r)[y][x] = 1
+func (r AdjacencyMatrix) AddEdge(x, y int) {
+	r[x][y] = 1
+	r[y][x] = 1
 }
 
-func (r *AdjacencyMatrix) RemoveEdge(x, y int) {
-	(*r)[x][y] = 0
-	(*r)[y][x] = 0
+func (r AdjacencyMatrix) RemoveEdge(x, y int) {
+	r[x][y] = 0
+	r[y][x] = 0
 }
 
-func (r *AdjacencyMatrix) AddVertex(x int)    {}
-func (r *AdjacencyMatrix) RemoveVertex(x int) {}
+func (r AdjacencyMatrix) AddVertex(x int)    {}
+func (r AdjacencyMatrix) RemoveVertex(x int) {}
 
 // https://en.wikipedia.org/wiki/Adjacency_list
 // Vertices are stored as records or objects, and every vertex stores a list of adjacent vertices

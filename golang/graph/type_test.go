@@ -57,7 +57,11 @@ func test(g Graph, t *testing.T) {
 		t.FailNow()
 	}
 
-	fmt.Printf("test neighbors of 1: %v\n", g.Neighbors(1))
+	nb := g.Neighbors(1)
+	fmt.Printf("test neighbors of 1: %v\n", nb)
+	if nb[0] != 2 || nb[1] != 3 {
+		t.FailNow()
+	}
 
 	g.RemoveEdge(2, 3)
 	fmt.Printf("test remove graph: %v\n", g)
