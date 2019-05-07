@@ -93,14 +93,18 @@ func Same(t1, t2 *Tree) bool {
 	same := make(chan bool)
 
 	go func() {
-		for v := range ch1 {
-			c := <-ch2
-			if v != c {
+		for {
+			c1, ok1 := <-ch1
+			c2, ok2 := <-ch2
+			if !ok1 || !ok2 {
+				same <- ok1 == ok2
+				break
+			}
+			if c1 != c2 {
 				same <- false
+				break
 			}
 		}
-		_, ok := <-ch2
-		same <- !ok
 	}()
 
 	return <-same
