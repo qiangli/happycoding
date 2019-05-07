@@ -108,7 +108,7 @@ func TestQueueIntArray(t *testing.T) {
 
 	size := 100
 	for i := 0; i < size; i++ {
-		q.Enqueue([]int{i, i*2})
+		q.Enqueue([]int{i, i * 2})
 	}
 
 	q.Visit(func(v Object) bool {
@@ -123,7 +123,7 @@ func TestQueueIntArray(t *testing.T) {
 	for i := 0; i < size; i++ {
 		j := q.Dequeue()
 		fmt.Println(i, j)
-		if !equal([]int{i, i*2}, j) {
+		if !equal([]int{i, i * 2}, j) {
 			t.FailNow()
 		}
 	}
