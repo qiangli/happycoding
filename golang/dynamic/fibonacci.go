@@ -42,3 +42,20 @@ func fibfunctor() func(int) int {
 
 	return fib
 }
+
+// in O(n) time and O(1) space
+func fibonacciN1(n int) int {
+	// var memo []int = make([]int, n+1)
+	// memo[0] = 0
+	// memo[1] = 1
+	// for i := 2; i < n + 1; i++ {
+	// 	memo[i] = memo[i-1] + memo[i-2]
+	// }
+	// return memo[n]
+
+	ring := []int{0, 1}
+	for i := 2; i < n+1; i++ {
+		ring[i%2] = ring[0] + ring[1]
+	}
+	return ring[n%2]
+}

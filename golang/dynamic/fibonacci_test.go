@@ -7,8 +7,22 @@ import (
 
 func TestFibonacci(t *testing.T) {
 	n := 9
-	fmt.Printf("Fibonacci: %v %v\n", n, fibonacci(n))
+	expected := 34
+	res := fibonacci(n)
+	fmt.Printf("Fibonacci: %v %v\n", n, res)
+	if res != expected {
+		t.FailNow()
+	}
 
-	f := fibfunctor()
-	fmt.Printf("Fibonacci: %v %v\n", n, f(n))
+	res = fibfunctor()(n)
+	fmt.Printf("Fibonacci: %v %v\n", n, res)
+	if res != expected {
+		t.FailNow()
+	}
+
+	res = fibonacciN1(n)
+	fmt.Printf("Fibonacci: %v %v\n", n, res)
+	if res != expected {
+		t.FailNow()
+	}
 }
