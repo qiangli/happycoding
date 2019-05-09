@@ -19,6 +19,9 @@ func visit(n *tree) {
 func growTree(a [][3]int) *tree {
 	nodes := make([]tree, len(a))
 	find := func(id int) *tree {
+		if id == -1 {
+			return nil
+		}
 		for i := 0; i < len(nodes); i++ {
 			if nodes[i].id == id {
 				return &nodes[i]
