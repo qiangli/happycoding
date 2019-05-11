@@ -14,3 +14,9 @@ func TestPermutaion(t *testing.T) {
 		t.FailNow()
 	}
 }
+
+func TestPermutaion3(t *testing.T) {
+	s := "ABCA"
+	p := permutation3(s)
+	fmt.Println(p, len(p))
+}
