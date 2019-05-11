@@ -101,3 +101,33 @@ func outorder(n *tree) {
 		outorder(n.left)
 	}
 }
+
+// https://leetcode.com/contest/weekly-contest-135/problems/binary-search-tree-to-greater-sum-tree/
+
+func bstToGst(root *tree) *tree {
+	var outOrder func(*tree)
+
+	sum := 0
+	outOrder = func(n *tree) {
+		if n == nil {
+			return
+		}
+		outOrder(n.right)
+		//
+		sum += n.id
+		n.id = sum
+
+		outOrder(n.left)
+
+		return
+	}
+
+	//
+	if root == nil {
+		return nil
+	}
+
+	outOrder(root)
+
+	return root
+}
