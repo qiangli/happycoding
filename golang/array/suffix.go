@@ -58,7 +58,7 @@ func (r SuffixArray) Search(p string) int {
 		return 1
 	}
 
-	lo, hi := 0, len(r.a)-1
+	lo, hi := 0, len(r.a)
 	for {
 		if lo > hi {
 			break
@@ -75,6 +75,66 @@ func (r SuffixArray) Search(p string) int {
 		}
 	}
 	return -1
+}
+
+// https://en.wikipedia.org/wiki/Suffix_array
+func (r SuffixArray) Match(p string) (int, int) {
+	n := len(r.a)
+	m := len(p)
+	match := func(k int) (bool, int) {
+		x := r.a[k]
+		i := 0
+		for ; i < m && x+i < n; i++ {
+			c := r.s[x+i]
+			if p[i] > c {
+				return false, 1
+			} else if p[i] < c {
+				return false, -1
+			}
+		}
+		d := m - (n - x)
+		return d <= 0, d
+	}
+
+	start := func(lo, hi int) int {
+		idx := -1
+		for lo <= hi {
+			mid := lo + (hi-lo)/2
+			b, x := match(mid)
+			if b {
+				idx = mid
+			}
+			if b || x < 0 {
+				hi = mid - 1
+			} else {
+				lo = mid + 1
+			}
+		}
+		return idx
+	}
+	end := func(lo, hi int) int {
+		idx := -1
+		for lo <= hi {
+			mid := lo + (hi-lo)/2
+			b, x := match(mid)
+			if b {
+				idx = mid
+			}
+			if b || x > 0 {
+				lo = mid + 1
+			} else {
+				hi = mid - 1
+			}
+		}
+		return idx
+	}
+	lo, hi := 0, len(r.a)-1
+	s := start(lo, hi)
+	if s == -1 {
+		return -1, -1
+	}
+	e := end(s, hi)
+	return s, e
 }
 
 func (r SuffixArray) String() string {

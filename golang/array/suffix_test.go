@@ -10,10 +10,11 @@ func TestNewSuffixArray(t *testing.T) {
 	fmt.Println(s)
 
 	sa := NewSuffixArray(s)
-
 	fmt.Println(sa)
 
 	idx := sa.Search("ana")
-
 	fmt.Println("search", idx)
+
+	start, end := sa.Match("ana")
+	fmt.Println("match", start, end)
 }
