@@ -137,6 +137,35 @@ func (r SuffixArray) Match(p string) (int, int) {
 	return s, e
 }
 
+// longest duplicate substring
+func (r SuffixArray) LDS() string {
+	n := len(r.a)
+	match := func(i, j int) int {
+		s1, s2 := r.a[i], r.a[j]
+		k := 0
+		for ; s1+k < n && s2+k < n; k++ {
+			c1, c2 := r.s[s1+k], r.s[s2+k]
+			if c1 != c2 {
+				break
+			}
+		}
+		return k
+	}
+	longest := 0
+	idx := -1
+	for i := n - 1; i > 0; i-- {
+		x := match(i, i-1)
+		if x > longest {
+			longest = x
+			idx = r.a[i]
+		}
+	}
+	if longest > 0 {
+		return r.s[idx : idx+longest]
+	}
+	return ""
+}
+
 func (r SuffixArray) String() string {
 	var s []string
 	for _, v := range r.a {
