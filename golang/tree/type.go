@@ -90,3 +90,7 @@ func (r *queue) dequeue() *tree {
 func (r queue) empty() bool {
 	return len(r) == 0
 }
+
+func (r queue) size() int {
+	return len(r)
+}

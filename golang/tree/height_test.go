@@ -26,4 +26,6 @@ func TestHeight(t *testing.T) {
 	}
 
 	printLevelOrder(tree)
+
+	printLevelOrder2(tree)
 }

@@ -44,3 +44,28 @@ func printLevelOrder(root *tree) {
 		fmt.Println()
 	}
 }
+
+//
+func printLevelOrder2(root *tree) {
+	q := new(queue)
+
+	q.enqueue(root)
+
+	level := 0
+	for !q.empty() {
+		sz := q.size()
+		level++
+		fmt.Printf("level %v:", level)
+		for i := 0; i < sz; i++ {
+			n := q.dequeue()
+			fmt.Printf(" %v ", n.id)
+			if n.left != nil {
+				q.enqueue(n.left)
+			}
+			if n.right != nil {
+				q.enqueue(n.right)
+			}
+		}
+		fmt.Println()
+	}
+}
