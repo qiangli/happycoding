@@ -6,19 +6,31 @@ import (
 )
 
 func TestReverse(t *testing.T) {
-	head := generate(16)
+	head := generate(8)
 	print(head)
 
 	r := reverse(head)
 	print(r)
 }
 
+func TestReversek(t *testing.T) {
+	head := generate(8)
+	print(head)
+	r := reversek(head, 3)
+	print(r)
+
+	head = generate(8)
+	print(head)
+	r = reversek(head, 5)
+	print(r)
+}
+
 func generate(size int) *node {
 	head := &node{
-		val: 0,
+		val: 1,
 	}
 	p := head
-	for i := 0; i < size-1; i++ {
+	for i := 1; i < size; i++ {
 		n := &node{val: i + 1}
 		p.next = n
 		p = n
