@@ -15,10 +15,10 @@ func TestPathsum(t *testing.T) {
 		{2, -1, -1},
 	}
 	tree := growTree(data)
+	sum := 21
+	fmt.Printf("data: %v\nsum: %v\n", data, sum)
 
-	fmt.Printf("data: %v\n", data)
-
-	b := pathsum(tree, 21)
+	b := pathsum(tree, sum)
 	if !b {
 		t.FailNow()
 	}

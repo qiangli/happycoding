@@ -111,7 +111,7 @@ func Same(t1, t2 *Tree) bool {
 }
 
 // https://riptutorial.com/algorithm/example/27566/to-check-if-two-binary-trees-are-same-or-not
-func sametree(t1, t2 *tree) bool {
+func sametree(t1, t2 *TreeNode) bool {
 	if t1 == nil && t2 == nil {
 		return true
 	}
@@ -119,7 +119,7 @@ func sametree(t1, t2 *tree) bool {
 		return false
 	}
 
-	return t1.id == t2.id &&
-		sametree(t1.left, t1.left) &&
-		sametree(t1.right, t2.right)
+	return t1.Val == t2.Val &&
+		sametree(t1.Left, t1.Left) &&
+		sametree(t1.Right, t2.Right)
 }

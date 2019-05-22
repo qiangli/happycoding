@@ -1,83 +1,87 @@
 package tree
 
+import ()
+
 //https://en.wikipedia.org/wiki/Tree_traversal
 //iterative
 
-func preorder(root *tree) {
+func preOrder(root *TreeNode) {
 	if root == nil {
 		return
 	}
-
-	nodes := new(stack)
-	nodes.push(root)
-	for !nodes.empty() {
-		n := nodes.pop()
+	s := NewStack()
+	s.Push(root)
+	for !s.IsEmpty() {
+		n := s.Pop()
 
 		visit(n)
-		if n.right != nil {
-			nodes.push(n.right)
+
+		if n.Right != nil {
+			s.Push(n.Right)
 		}
-		if n.left != nil {
-			nodes.push(n.left)
+		if n.Left != nil {
+			s.Push(n.Left)
 		}
 	}
 }
 
-func inorder(root *tree) {
+func inOrder(root *TreeNode) {
 	if root == nil {
 		return
 	}
-	nodes := new(stack)
+	s := NewStack()
 	n := root
-	for !nodes.empty() || n != nil {
+	for !s.IsEmpty() || n != nil {
 		if n != nil {
-			nodes.push(n)
-			n = n.left
+			s.Push(n)
+			n = n.Left
 		} else {
-			n = nodes.pop()
+			n = s.Pop()
+
 			visit(n)
-			n = n.right
+
+			n = n.Right
 		}
 	}
 }
 
-func postorder(root *tree) {
+func postOrder(root *TreeNode) {
 	if root == nil {
 		return
 	}
-	nodes := new(stack)
+	s := NewStack()
 	n := root
-	var last *tree
-	for !nodes.empty() || n != nil {
+	var last *TreeNode
+	for !s.IsEmpty() || n != nil {
 		if n != nil {
-			nodes.push(n)
-			n = n.left
+			s.Push(n)
+			n = n.Left
 		} else {
-			p := nodes.peek()
-			if p.right != nil && last != p.right {
-				n = p.right
+			p := s.Peek()
+			if p.Right != nil && last != p.Right {
+				n = p.Right
 			} else {
 				visit(p)
-				last = nodes.pop()
+				last = s.Pop()
 			}
 		}
 	}
 }
 
-func outorder(root *tree) {
+func outOrder(root *TreeNode) {
 	if root == nil {
 		return
 	}
-	nodes := new(stack)
+	s := NewStack()
 	n := root
-	for !nodes.empty() || n != nil {
+	for !s.IsEmpty() || n != nil {
 		if n != nil {
-			nodes.push(n)
-			n = n.right
+			s.Push(n)
+			n = n.Right
 		} else {
-			n = nodes.pop()
+			n = s.Pop()
 			visit(n)
-			n = n.left
+			n = n.Left
 		}
 	}
 }

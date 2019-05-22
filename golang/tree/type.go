@@ -4,93 +4,51 @@ import (
 	"fmt"
 )
 
-type tree struct {
-	id    int
-	left  *tree
-	right *tree
+// TreeNode is a definition for a binary tree node.
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
 }
 
-func visit(n *tree) {
-	fmt.Printf(" %v ", n.id)
+//
+type Object *TreeNode //interface{}
+
+type Visitor func(Object) bool
+
+func visit(n Object) {
+	fmt.Print(" -> ", n.Val)
 }
 
-// a is an array of arrays representing a list of tree nodes
+// internal node for queue and stack
+type node struct {
+	val  Object
+	next *node
+}
+
+// data is an array of arrays representing a list of tree nodes
 // with format: id, left child id, right child id
-func growTree(a [][3]int) *tree {
-	nodes := make([]tree, len(a))
-	find := func(id int) *tree {
-		if id == -1 {
+func growTree(data [][3]int) *TreeNode {
+	nodes := make([]TreeNode, len(data))
+	find := func(Val int) *TreeNode {
+		if Val == -1 {
 			return nil
 		}
 		for i := 0; i < len(nodes); i++ {
-			if nodes[i].id == id {
+			if nodes[i].Val == Val {
 				return &nodes[i]
 			}
 		}
 		return nil
 	}
-	// set id value
-	for i := 0; i < len(a); i++ {
-		nodes[i].id = a[i][0]
+	// set value
+	for i := 0; i < len(data); i++ {
+		nodes[i].Val = data[i][0]
 	}
 	// attach child
-	for i := 0; i < len(a); i++ {
-		nodes[i].left = find(a[i][1])
-		nodes[i].right = find(a[i][2])
+	for i := 0; i < len(data); i++ {
+		nodes[i].Left = find(data[i][1])
+		nodes[i].Right = find(data[i][2])
 	}
 	return &nodes[0]
-}
-
-// simplistic stack implementation / not thread safe
-type stack []*tree
-
-func (r *stack) push(v *tree) {
-	*r = append(*r, v)
-}
-
-func (r *stack) pop() *tree {
-	size := len(*r)
-	if size == 0 {
-		return nil
-	}
-	v := (*r)[size-1]
-	*r = (*r)[:size-1]
-	return v
-}
-
-func (r stack) peek() *tree {
-	size := len(r)
-	if size == 0 {
-		return nil
-	}
-	return r[size-1]
-}
-
-func (r stack) empty() bool {
-	return len(r) == 0
-}
-
-// simplistic queue implementation / not thread safe
-type queue []*tree
-
-func (r *queue) enqueue(v *tree) {
-	*r = append(*r, v)
-}
-
-func (r *queue) dequeue() *tree {
-	size := len(*r)
-	if size == 0 {
-		return nil
-	}
-	v := (*r)[0]
-	*r = (*r)[1:]
-	return v
-}
-
-func (r queue) empty() bool {
-	return len(r) == 0
-}
-
-func (r queue) size() int {
-	return len(r)
 }

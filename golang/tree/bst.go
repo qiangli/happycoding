@@ -1,36 +1,34 @@
 package tree
 
-func isBST(root *tree) bool {
+func isBST(root *TreeNode) bool {
 
-	var check func(*tree, int, int) bool
-	check = func(n *tree, lo, hi int) bool {
+	var check func(*TreeNode, int, int) bool
+	check = func(n *TreeNode, lo, hi int) bool {
 		if n == nil {
 			return true
 		}
-		if n.id < lo || n.id > hi {
+		if n.Val < lo || n.Val > hi {
 			return false
 		}
 
-		return check(n.left, lo, n.id-1) && check(n.right, n.id+1, hi)
+		return check(n.Left, lo, n.Val-1) && check(n.Right, n.Val+1, hi)
 	}
 
-	if root == nil {
-		return true
-	}
+	//
 	lo, hi := 1<<31-1, -1<<31
-	var lohi func(*tree)
-	lohi = func(n *tree) {
+	var lohi func(*TreeNode)
+	lohi = func(n *TreeNode) {
 		if n == nil {
 			return
 		}
-		if n.id < lo {
-			lo = n.id
+		if n.Val < lo {
+			lo = n.Val
 		}
-		if n.id > hi {
-			hi = n.id
+		if n.Val > hi {
+			hi = n.Val
 		}
-		lohi(n.left)
-		lohi(n.right)
+		lohi(n.Left)
+		lohi(n.Right)
 	}
 	lohi(root)
 

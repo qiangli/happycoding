@@ -18,6 +18,7 @@ func TestBFS(t *testing.T) {
 
 	fmt.Printf("data: %v\n", data)
 
-	levelorder(tree)
+	fmt.Println("\nlevel order")
+	levelOrder(tree)
 	fmt.Println()
 }

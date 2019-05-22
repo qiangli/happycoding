@@ -1,23 +1,27 @@
 package tree
 
+import ()
+
 //https://en.wikipedia.org/wiki/Tree_traversal
 // breadth first search
 
-func levelorder(root *tree) {
+func levelOrder(root *TreeNode) {
 	if root == nil {
 		return
 	}
 
-	nodes := new(queue)
-	nodes.enqueue(root)
-	for !nodes.empty() {
-		n := nodes.dequeue()
+	q := NewQueue()
+	q.Enqueue(root)
+	for !q.IsEmpty() {
+		n := q.Dequeue()
+
 		visit(n)
-		if n.left != nil {
-			nodes.enqueue(n.left)
+
+		if n.Left != nil {
+			q.Enqueue(n.Left)
 		}
-		if n.right != nil {
-			nodes.enqueue(n.right)
+		if n.Right != nil {
+			q.Enqueue(n.Right)
 		}
 	}
 }

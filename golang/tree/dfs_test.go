@@ -19,16 +19,16 @@ func TestDFS(t *testing.T) {
 	fmt.Printf("data: %v\n", data)
 
 	fmt.Println("\npre order")
-	preorder(tree)
+	preOrder(tree)
 
 	fmt.Println("\nin order")
-	inorder(tree)
+	inOrder(tree)
 
 	fmt.Println("\npost order")
-	postorder(tree)
+	postOrder(tree)
 
 	fmt.Println("\nout order")
-	outorder(tree)
+	outOrder(tree)
 
 	fmt.Println()
 }
