@@ -23,7 +23,7 @@ func partition(nums []int) bool {
 		if s == 0 {
 			return true
 		}
-		if n == 0 && s != 0 || s < 0 {
+		if n == 0 {
 			return false
 		}
 
