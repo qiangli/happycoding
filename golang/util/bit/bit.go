@@ -4,27 +4,46 @@ import (
 	"fmt"
 )
 
-type Bit []uint64
+const Size = 5
 
-func NewBit(size int) Bit {
-	bit := make([]uint64, size/64+1)
-	return bit
-}
+type Bit [Size]uint64
 
-func (r Bit) Set(i int) {
+func (r *Bit) Set(i int) {
 	r[i/64] |= 1 << byte(i%64)
 }
 
-func (r Bit) Get(i int) bool {
-	return r[i/64]&(1<<byte(i%64)) != 0
+func (r *Bit) Get(i int) bool {
+	b := r[i/64] & (1 << byte(i%64))
+	return b != 0
 }
 
-func (r Bit) Clear(i int) {
+func (r *Bit) Clear(i int) {
 	r[i/64] &^= 1 << byte(i%64)
 }
 
-func (r Bit) Toggle(i int) {
+func (r *Bit) Toggle(i int) {
 	r[i/64] ^= 1 << byte(i%64)
+}
+
+func (r *Bit) Negate(n int) Bit {
+	var mask Bit
+	for i := 0; i < n/64+1; i++ {
+		mask[i] = 0xffffffffffffffff
+	}
+	mask[n/64] >>= byte(64 - n%64)
+	bit := r.Clone()
+	for i, v := range mask {
+		bit[i] = v &^ bit[i]
+	}
+	return bit
+}
+
+func (r *Bit) Clone() Bit {
+	var bit Bit
+	for i, v := range r {
+		bit[i] = v
+	}
+	return bit
 }
 
 func (r Bit) String() string {
