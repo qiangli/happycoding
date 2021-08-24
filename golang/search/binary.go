@@ -1,7 +1,5 @@
 package search
 
-import ()
-
 // return index or -1 if not found
 func binarySearch(a []int, x int) int {
 	lo := 0

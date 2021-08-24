@@ -1,7 +1,5 @@
 package sort
 
-import ()
-
 func selectionSort(a []int) {
 	swap := func(a []int, i, j int) {
 		a[i], a[j] = a[j], a[i]

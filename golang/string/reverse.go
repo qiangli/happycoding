@@ -1,8 +1,6 @@
 package string
 
-import (
 //"fmt"
-)
 
 func reverse(s []byte) {
 	n := len(s)

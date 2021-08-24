@@ -1,7 +1,5 @@
 package util
 
-import ()
-
 type Stack struct {
 	head *Node
 	size int

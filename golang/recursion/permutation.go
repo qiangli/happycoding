@@ -34,19 +34,22 @@ func permute(a []int) [][]int {
 	return r
 }
 
-func permute2(a []int, idx int) {
+func permute2(a []int, idx int) [][]int {
 	if idx == len(a) {
-		fmt.Println("permute2", a)
-		return
+		c := make([]int, len(a))
+		copy(c, a)
+		return [][]int{c}
 	}
 
 	swap := func(i, j int) {
 		a[i], a[j] = a[j], a[i]
 	}
 
+	var p [][]int
 	for i := idx; i < len(a); i++ {
 		swap(idx, i)
-		permute2(a, idx+1)
+		p = append(p, permute2(a, idx+1)...)
 		swap(idx, i)
 	}
+	return p
 }

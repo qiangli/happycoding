@@ -1,7 +1,5 @@
 package array
 
-import ()
-
 type ArrayList struct {
 	array []int
 	size  int
