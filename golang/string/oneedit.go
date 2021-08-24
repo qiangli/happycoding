@@ -1,7 +1,5 @@
 package string
 
-import ()
-
 func oneAway(s1, s2 string) bool {
 	return oneEdit([]byte(s1), []byte(s2))
 }

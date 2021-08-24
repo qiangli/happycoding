@@ -1,7 +1,5 @@
 package recursion
 
-import ()
-
 // return -1 if not found
 func binarySearch(a []int, x int, lo, hi int) int {
 	if lo > hi {

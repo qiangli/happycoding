@@ -1,8 +1,6 @@
 package queue
 
-import (
 //"fmt"
-)
 
 type MyCircularQueue struct {
 	head, tail int

@@ -1,7 +1,5 @@
 package tree
 
-import ()
-
 // type Object interface{}
 
 // // returns false to stop

@@ -1,7 +1,5 @@
 package util
 
-import ()
-
 type Object interface{}
 
 type Queue struct {
