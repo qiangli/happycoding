@@ -1,4 +1,4 @@
-//http://rosalind.info/problems/dna/
+// http://rosalind.info/problems/dna/
 package main
 
 import (

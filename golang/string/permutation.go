@@ -67,8 +67,8 @@ func permutation2(a1, a2 string) bool {
 	return true
 }
 
-//https://www.geeksforgeeks.org/distinct-permutations-string-set-2/
-//print all permutations
+// https://www.geeksforgeeks.org/distinct-permutations-string-set-2/
+// print all permutations
 func permutation3(s string) []string {
 	sz := len(s)
 

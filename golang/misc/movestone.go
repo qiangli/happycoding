@@ -5,7 +5,7 @@ import (
 	"sort"
 )
 
-//https://blog.csdn.net/zjucor/article/details/89844621
+// https://blog.csdn.net/zjucor/article/details/89844621
 func numMovesStonesII(stones []int) []int {
 	sort.Ints(stones)
 

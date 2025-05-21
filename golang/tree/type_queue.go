@@ -67,7 +67,6 @@ func (r *Queue) Size() int {
 	return r.size
 }
 
-//
 func (r *Queue) Visit(f Visitor) {
 	for c := r.head.next; c != nil; c = c.next {
 		if !f(c.val) {

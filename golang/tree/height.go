@@ -45,7 +45,6 @@ func printLevelOrder(root *TreeNode) {
 	}
 }
 
-//
 func printLevelOrder2(root *TreeNode) {
 	q := NewQueue()
 

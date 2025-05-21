@@ -7,7 +7,7 @@ import (
 
 //https://www.geeksforgeeks.org/combinations-with-repetitions/
 
-//https://www.geeksforgeeks.org/print-all-permutations-with-repetition-of-characters/
+// https://www.geeksforgeeks.org/print-all-permutations-with-repetition-of-characters/
 func permutationChar(s string) {
 	var n = len(s)
 	var ba = make([]byte, n)
@@ -41,7 +41,7 @@ func permutationChar(s string) {
 	permutate(data, 0)
 }
 
-//https://www.geeksforgeeks.org/print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/
+// https://www.geeksforgeeks.org/print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/
 func combination(a []int, N, K int) {
 	var nk func([]int, int, int)
 	nk = func(data []int, n, k int) {
@@ -62,7 +62,7 @@ func combination(a []int, N, K int) {
 	nk(data, 0, 0)
 }
 
-//https://www.geeksforgeeks.org/make-combinations-size-k/
+// https://www.geeksforgeeks.org/make-combinations-size-k/
 func combinationNK(N, K int) {
 	var nk func([]int, int, int)
 	nk = func(data []int, start, idx int) {
@@ -124,7 +124,7 @@ func compose(a []int, n, K, i int) {
 	}
 }
 
-//https://www.geeksforgeeks.org/find-all-combinations-that-adds-upto-given-number-2/
+// https://www.geeksforgeeks.org/find-all-combinations-that-adds-upto-given-number-2/
 func compose2(a []int, n, K, i int) {
 	switch {
 	case n == 0:

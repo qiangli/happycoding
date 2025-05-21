@@ -1,4 +1,4 @@
-//https://leetcode.com/explore/learn/card/data-structure-tree/133/conclusion/995/
+// https://leetcode.com/explore/learn/card/data-structure-tree/133/conclusion/995/
 package tree
 
 import (

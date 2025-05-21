@@ -11,7 +11,6 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-//
 type Object *TreeNode //interface{}
 
 type Visitor func(Object) bool

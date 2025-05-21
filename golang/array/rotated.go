@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//search in sorted and rotated array; return index or -1 if not found
+// search in sorted and rotated array; return index or -1 if not found
 func rotated(a []int, x int, lo, hi int) int {
 	if lo == hi {
 		if a[lo] == x {

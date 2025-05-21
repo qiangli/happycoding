@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//https://www.geeksforgeeks.org/partition-problem-dp-18/
+// https://www.geeksforgeeks.org/partition-problem-dp-18/
 func partition(nums []int) bool {
 	sum := 0
 	for _, v := range nums {

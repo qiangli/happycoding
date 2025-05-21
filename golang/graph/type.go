@@ -92,7 +92,6 @@ func (r *linkedlist) contains(v int) bool {
 	return false
 }
 
-//
 type Graph interface {
 	Adjacent(x, y int) bool
 	Neighbors(x int) []int
@@ -102,7 +101,6 @@ type Graph interface {
 	RemoveVertex(x int)
 }
 
-//
 type EdgeList [][2]int
 
 func (r EdgeList) Adjacent(x, y int) bool {
@@ -330,7 +328,6 @@ func (r *Cormen) RemoveVertex(x int) {
 
 }
 
-//
 type object interface{}
 
 type vertex struct {
@@ -494,9 +491,7 @@ func (r *GoodrichAndTamassia) AddVertex(x int) {}
 
 func (r *GoodrichAndTamassia) RemoveVertex(x int) {}
 
-//
 type IncidenceMatrix [][]int
 
-//
 type IncidenceList struct {
 }

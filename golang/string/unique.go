@@ -1,6 +1,6 @@
 package string
 
-//assume ascii char size 128
+// assume ascii char size 128
 func isUnique(a []byte) bool {
 	if len(a) > 128 {
 		return false

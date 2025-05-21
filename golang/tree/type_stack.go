@@ -57,7 +57,6 @@ func (r *Stack) Size() int {
 	return r.size
 }
 
-//
 func (r *Stack) Visit(f Visitor) {
 	for c := r.head.next; c != nil; c = c.next {
 		if !f(c.val) {

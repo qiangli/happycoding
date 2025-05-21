@@ -10,7 +10,7 @@ type Item struct {
 	weight int
 }
 
-//https://www.geeksforgeeks.org/fractional-knapsack-problem/
+// https://www.geeksforgeeks.org/fractional-knapsack-problem/
 func fractionKnapsack(w int, items []Item) float32 {
 	sort.Slice(items, func(i, j int) bool {
 		a := float32(items[i].value) / float32(items[i].weight)
